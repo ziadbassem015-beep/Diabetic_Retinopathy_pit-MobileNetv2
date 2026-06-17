@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Medical Staff | DR Screening</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar" aria-label="Page header">
+        <div class="brand">
+          <img src="assets/logo.png" alt="Smart Medical Staff" class="brand-logo">
+          <div>
+            <p class="eyebrow">Smart Medical Staff</p>
+            <h1>Diabetic Retinopathy Screening</h1>
+          </div>
+        </div>
+        <div class="status-pill" id="apiStatus" data-state="checking">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="apiStatusText">Checking API</span>
+        </div>
+      </header>
+
+      <section class="workspace" aria-label="Screening workspace">
+        <section class="upload-panel" aria-label="Image upload">
+          <div class="panel-heading">
+            <p class="eyebrow">Fundus Image</p>
+            <h2>Upload Case</h2>
+          </div>
+
+          <label class="drop-zone" id="dropZone" for="fileInput">
+            <input id="fileInput" type="file" accept="image/png,image/jpeg,image/jpg,image/webp,image/gif">
+            <span class="drop-icon" aria-hidden="true"></span>
+            <span class="drop-title" id="dropTitle">Choose an image or drag it here</span>
+            <span class="drop-meta" id="fileMeta">PNG, JPG, WEBP</span>
+          </label>
+
+          <div class="preview-frame" id="previewFrame" hidden>
+            <img id="previewImage" alt="Fundus image preview">
+          </div>
+
+          <div class="actions">
+            <button class="secondary-button" type="button" id="clearButton" disabled>Clear</button>
+            <button class="heatmap-button" type="button" id="gradcamButton" disabled>Grad-CAM</button>
+            <button class="primary-button" type="button" id="analyzeButton" disabled>Analyze Image</button>
+          </div>
+
+          <p class="message" id="message" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="result-panel" aria-label="Analysis result">
+          <div class="result-empty" id="emptyState">
+            <div class="result-mark" aria-hidden="true"></div>
+            <p>The screening result will appear here after analysis.</p>
+          </div>
+
+          <div class="result-content" id="resultContent" hidden>
+            <div class="result-summary">
+              <div>
+                <p class="eyebrow">Predicted Class</p>
+                <h2 id="resultLabel">-</h2>
+              </div>
+              <div class="confidence-gauge">
+                <span id="confidenceValue">0%</span>
+                <small>confidence</small>
+              </div>
+            </div>
+
+            <div class="severity-strip" id="severityStrip"></div>
+
+            <div class="probability-list" id="probabilityList" aria-label="Probability scores"></div>
+
+            <div class="gradcam-section" id="gradcamSection" hidden>
+              <div class="section-heading">
+                <p class="eyebrow">Grad-CAM</p>
+                <h3>Model attention overlay</h3>
+              </div>
+              <div class="gradcam-frame">
+                <img id="gradcamImage" alt="Grad-CAM heatmap overlay">
+              </div>
+              <p class="gradcam-meta" id="gradcamMeta"></p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

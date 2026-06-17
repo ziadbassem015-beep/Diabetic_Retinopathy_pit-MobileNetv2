@@ -1,0 +1,23 @@
+# Local Python environments and package caches
+.venv/
+.uv-cache/
+.uv-python/
+__pycache__/
+*.py[cod]
+
+# Local data and large raw datasets
+data/
+aptos2019-blindness-detection.zip
+
+# Runtime logs
+*.log
+uvicorn.out.log
+uvicorn.err.log
+
+# Temporary push workspace
+.push-work/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
